@@ -75,7 +75,7 @@ class ParseNode(BaseNode):
 
             chunks = chunk(text=docs_transformed.page_content,
                             chunk_size= self.node_config.get("chunk_size", 4096),
-                            token_counter=lambda x: len(x.split()),
+                            token_counter=lambda x: len(x),
                             memoize=False)
         else:
             docs_transformed = docs_transformed[0]
@@ -83,13 +83,13 @@ class ParseNode(BaseNode):
             if type(docs_transformed) == Document:
                 chunks = chunk(text=docs_transformed.page_content,
                             chunk_size= self.node_config.get("chunk_size", 4096),
-                            token_counter=lambda x: len(x.split()),
+                            token_counter=lambda x: len(x),
                             memoize=False)
             else:
                 
                 chunks = chunk(text=docs_transformed,
                                 chunk_size= self.node_config.get("chunk_size", 4096),
-                                token_counter=lambda x: len(x.split()),
+                                token_counter=lambda x: len(x),
                                 memoize=False)
                           
         state.update({self.output[0]: chunks})
